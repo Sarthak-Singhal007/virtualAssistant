@@ -1,8 +1,5 @@
 # 🎙️ Voice-Enabled Virtual Assistant (MERN + Gemini)
 
-## 💻 GitHub Repository  
-**Code:** [https://github.com/CodePandaAkhilesh/virtualAssistant](https://github.com/CodePandaAkhilesh/virtualAssistant)  
-**Live Demo:** https://virtualassistant-03vg.onrender.com
 
 ---
 
