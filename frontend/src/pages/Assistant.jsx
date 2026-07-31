@@ -24,6 +24,14 @@ const Assistant = ({ assistantId, onBack }) => {
   };
 
   const handleResponse = (response) => {
+    const { type, userInput, response: textResponse } = response;
+    
+    if (type === 'youtube-play') {
+      window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(userInput)}`, '_blank');
+    } else if (type === 'search') {
+      window.open(`https://www.google.com/search?q=${encodeURIComponent(userInput)}`, '_blank');
+    }
+    
     setResponses(prev => [...prev, response]);
   };
 

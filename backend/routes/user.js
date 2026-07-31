@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Assistant = require('../models/Assistant');
 const authMiddleware = require('../middlewares/auth');
 const axios = require('axios');
+const { callGeminiAPI } = require('../gemini');
 
 // Get user profile
 router.get('/profile', authMiddleware, async (req, res) => {
@@ -41,18 +42,7 @@ router.post('/asktoassistant', authMiddleware, async (req, res) => {
 
     // Call Gemini API
     try {
-      const geminiResponse = await axios.post(
-        process.env.GEMINI_API_URL,
-        {
-          contents: [{
-            parts: [{
-              text: `You are ${assistantName}, a helpful AI assistant. Respond to this command: ${command}`
-            }]
-          }]
-        }
-      );
-
-      const responseText = geminiResponse.data?.candidates?.[0]?.content?.parts?.[0]?.text || 'No response';
+      const geminiResult = await callGeminiAPI(command, assistantName);
 
       // Save to conversation history
       assistant.conversationHistory.push({
@@ -62,7 +52,7 @@ router.post('/asktoassistant', authMiddleware, async (req, res) => {
 
       assistant.conversationHistory.push({
         role: 'assistant',
-        content: responseText
+        content: geminiResult.response
       });
 
       await assistant.save();
@@ -70,9 +60,7 @@ router.post('/asktoassistant', authMiddleware, async (req, res) => {
       res.json({
         success: true,
         data: {
-          type: 'text',
-          userInput: command,
-          response: responseText,
+          ...geminiResult,
           assistantName: assistantName
         }
       });
