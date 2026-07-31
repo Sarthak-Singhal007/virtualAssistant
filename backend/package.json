@@ -14,7 +14,7 @@
     "gemini",
     "mern"
   ],
-  "author": "",
+  "author": "Sarthak Singhal <sarthaksinghal676@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",

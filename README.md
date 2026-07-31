@@ -178,8 +178,8 @@ Content-Type: application/json
 
 {
   "command": "play despacito on youtube",
-  "assistantName": "Jarvis",
-  "userName": "Akhilesh"
+  "assistantId": "60d5ecb8b392d7... (example ID)",
+  "assistantName": "Jarvis"
 }
 
 ```
