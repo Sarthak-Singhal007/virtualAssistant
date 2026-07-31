@@ -31,6 +31,12 @@ const Assistant = ({ assistantId, onBack }) => {
     } else if (type === 'search') {
       window.open(`https://www.google.com/search?q=${encodeURIComponent(userInput)}`, '_blank');
     }
+
+    if ('speechSynthesis' in window && textResponse) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(textResponse);
+      window.speechSynthesis.speak(utterance);
+    }
     
     setResponses(prev => [...prev, response]);
   };
