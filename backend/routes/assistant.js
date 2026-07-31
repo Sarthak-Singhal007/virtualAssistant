@@ -41,6 +41,10 @@ router.get('/:id', authMiddleware, async (req, res) => {
       return res.status(404).json({ error: 'Assistant not found' });
     }
 
+    if (assistant.creator.toString() !== req.userId) {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+
     res.json(assistant);
   } catch (error) {
     res.status(500).json({ error: error.message });
