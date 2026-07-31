@@ -269,4 +269,5 @@ Lightweight & Deployable → Runs on MERN + Gemini (serverless friendly)
 
 ## 📞 Contact
 
-Akhilesh Verma – 📧 av14021999@gmail.com
+Sarthak Singhal -> sarthaksinghal676@gmail.com
+
