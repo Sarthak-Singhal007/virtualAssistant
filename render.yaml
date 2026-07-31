@@ -7,3 +7,7 @@ services:
     envVars:
       - key: NODE_VERSION
         value: 18
+      - key: MONGODB_URL
+        value: mongodb+srv://c84869820_db_user:2kP0gaE0sjusTMGc@cluster1.f6krwmb.mongodb.net/virtualassistant?retryWrites=true&w=majority&appName=Cluster1
+      - key: NODE_ENV
+        value: production
