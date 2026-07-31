@@ -5,6 +5,13 @@ const Assistant = require('../models/Assistant');
 const authMiddleware = require('../middlewares/auth');
 const axios = require('axios');
 const { callGeminiAPI } = require('../gemini');
+const rateLimit = require('express-rate-limit');
+
+const askToAssistantLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 30, // Limit each IP to 30 requests per 15 minutes
+  message: { error: 'Too many requests, please try again after 15 minutes' }
+});
 
 // Get user profile
 router.get('/profile', authMiddleware, async (req, res) => {
@@ -22,7 +29,7 @@ router.get('/profile', authMiddleware, async (req, res) => {
 });
 
 // Ask assistant (main endpoint for voice commands)
-router.post('/asktoassistant', authMiddleware, async (req, res) => {
+router.post('/asktoassistant', authMiddleware, askToAssistantLimiter, async (req, res) => {
   try {
     const { command, assistantName, assistantId } = req.body;
 

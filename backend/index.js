@@ -38,10 +38,7 @@ app.use((err, req, res, next) => {
 // Database connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/virtualassistant', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/virtualassistant');
     console.log('✅ MongoDB connected');
   } catch (error) {
     console.error('❌ MongoDB connection error:', error);
