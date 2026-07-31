@@ -2,6 +2,7 @@
   "name": "virtualassistant-monorepo",
   "private": true,
   "scripts": {
+    "postinstall": "npm install --prefix backend",
     "start": "npm start --prefix backend",
     "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
     "dev:backend": "npm run dev --prefix backend",
